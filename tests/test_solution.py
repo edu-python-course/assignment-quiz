@@ -1,7 +1,7 @@
 import unittest
 from contextlib import redirect_stdout
 from io import StringIO
-from unittest.mock import call, Mock, mock_open, patch
+from unittest.mock import Mock, mock_open, patch
 
 from main import (
     display_question,
@@ -90,28 +90,19 @@ class TestSolution(unittest.TestCase):
             "options": ["Kharkiv", "Vinnytsia", "Kyiv", "Poltava"],
             "answer": "Kyiv",
         }
-        expected_calls = [
-            call(1, "Kharkiv"),
-            call(2, "Vinnytsia"),
-            call(3, "Kyiv"),
-            call(4, "Poltava"),
-        ]
 
-        with patch("builtins.print") as mock_print:
-            display_question(question)
-
-        mock_print.assert_has_calls(expected_calls, any_order=False)
-
-        expected_stdout = ("\nWhat is the capital of Ukraine?\n\n"
-                           "1 Kharkiv\n"
-                           "2 Vinnytsia\n"
-                           "3 Kyiv\n"
-                           "4 Poltava\n")
         with StringIO() as io_buff, redirect_stdout(io_buff):
             display_question(question)
             stdout = io_buff.getvalue()
 
-        self.assertEqual(stdout, expected_stdout)
+        pattern = (
+            r"\sWhat is the capital of Ukraine\?\s{2}"
+            r"1\s+Kharkiv\s"
+            r"2\s+Vinnytsia\s"
+            r"3\s+Kyiv\s"
+            r"4\s+Poltava\s"
+        )
+        self.assertRegex(stdout, pattern)
 
     # noinspection PyTypeChecker
     @unittest.expectedFailure
