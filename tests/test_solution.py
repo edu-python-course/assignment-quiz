@@ -249,16 +249,19 @@ class TestSolution(unittest.TestCase):
     @unittest.expectedFailure
     def test_quiz_functions_called_once(self):
         with patch("main.gather_username") as func_get_username, \
+             patch("main.load_questions_from_csv") as func_get_questions, \
              patch("main.perform_quiz") as func_get_score, \
              patch("main.write_score_to_file") as func_write_score:
             main()
             func_get_username.assert_called_once()
+            func_get_questions.assert_called_once()
             func_get_score.assert_called_once()
             func_write_score.assert_called_once()
 
     @unittest.expectedFailure
     @patch("main.gather_username")
     @patch("main.write_score_to_file")
+    # @patch("main.load_questions_from_csv")
     @patch("main.perform_quiz", return_value=10)
     def test_main_displays_score(self, *args):
         with StringIO() as io_buff, redirect_stdout(io_buff):
