@@ -1,3 +1,9 @@
+project_id: "631922"
+pull_request_title: "[Crowdin] Translation updates"
+pull_request_labels:
+  - crowdin
+  - i18n
+commit_message: "[Crowdin] New translations for %language% language"
 files:
   - source: /.lesson/instructions.md
     translation: /i18n/%two_letters_code%/%original_file_name%
