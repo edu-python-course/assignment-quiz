@@ -1,13 +1,12 @@
 [tool.poetry]
 name = "assignment-quiz"
 version = "1.0.0"
-description = "Training project - quiz script implementation"
+description = "Quiz scpit training project"
 authors = ["Serhii Horodilov <sgorodil@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
 python = ">=3.10.0,<3.11"
-
 
 [build-system]
 requires = ["poetry-core"]
