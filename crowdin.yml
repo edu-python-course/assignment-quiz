@@ -1,3 +1,4 @@
+project_id: "631922"
 files:
   - source: /.lesson/instructions.md
     translation: /i18n/%two_letters_code%/%original_file_name%
