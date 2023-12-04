@@ -1,4 +1,4 @@
-# Assignment: ASSIGNMENT NAME
+# Assignment: Quiz Script
 
 This repository is compatible with [Replit](https://replit.com/).
 
