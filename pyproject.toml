@@ -1,8 +1,8 @@
 [tool.poetry]
-name = "todo-provide-assignment-name"
-version = "0.1.0"
-description = "todo: provide assignment description"
-authors = ["Author Name <authorl@email.com>"]
+name = "assignment-quiz"
+version = "1.0.0"
+description = "Training project - quiz script implementation"
+authors = ["Serhii Horodilov <sgorodil@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
