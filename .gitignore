@@ -1,0 +1,20 @@
+# virtual environment
+/.venv/
+/.env/
+/venv/
+/env/
+
+# python byte-compiled
+__pycache__
+
+# replit python libraries
+.pythonlibs/
+.cache/
+
+# idea configs
+/.vscode/
+/.idea/
+
+# temporary files storage
+/temp/
+/tmp/
