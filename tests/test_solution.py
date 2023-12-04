@@ -255,3 +255,15 @@ class TestSolution(unittest.TestCase):
             func_get_username.assert_called_once()
             func_get_score.assert_called_once()
             func_write_score.assert_called_once()
+
+    @unittest.expectedFailure
+    @patch("main.gather_username")
+    @patch("main.write_score_to_file")
+    @patch("main.perform_quiz", return_value=10)
+    def test_main_displays_score(self, *args):
+        with StringIO() as io_buff, redirect_stdout(io_buff):
+            main()
+            stdout = io_buff.getvalue()
+
+        pattern = r"\nQuiz score:\s+10\n"
+        self.assertRegex(stdout, pattern)
