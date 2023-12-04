@@ -19,5 +19,6 @@ __pycache__
 /temp/
 /tmp/
 
-# scores file
+# runtime files
+questions.*
 scores.*
