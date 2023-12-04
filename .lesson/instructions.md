@@ -9,7 +9,10 @@ execution is completed.
 
 ## Objective
 
-[//]: # (TODO: provide assignment objective)
+Your task is to implement a script to run a command line based quiz.
+The users will enter their names and answer questions from the file
+one-by-one. At the end of the quiz the score should be displayed to
+the user, and a record should be created inside the *scores.txt* file.
 
 ## Requirements
 
