@@ -3,15 +3,9 @@ from contextlib import redirect_stdout
 from io import StringIO
 from unittest.mock import Mock, mock_open, patch
 
-from main import (
-    display_question,
-    gather_answer,
-    gather_username,
-    is_correct,
-    load_questions_from_csv,
-    perform_quiz,
-    write_score_to_file,
-)
+from main import (display_question, gather_answer, gather_username, is_correct,
+                  load_questions_from_csv, main, perform_quiz,
+                  write_score_to_file)
 
 
 class TestSolution(unittest.TestCase):
@@ -251,3 +245,13 @@ class TestSolution(unittest.TestCase):
             perform_quiz(mock_questions)
             self.assertEqual(mock.call_count, number_of_questions)
             mock.assert_called_with(question, "answer")
+
+    @unittest.expectedFailure
+    def test_quiz_functions_called_once(self):
+        with patch("main.gather_username") as func_get_username, \
+             patch("main.perform_quiz") as func_get_score, \
+             patch("main.write_score_to_file") as func_write_score:
+            main()
+            func_get_username.assert_called_once()
+            func_get_score.assert_called_once()
+            func_write_score.assert_called_once()
