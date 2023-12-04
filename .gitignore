@@ -18,3 +18,6 @@ __pycache__
 # temporary files storage
 /temp/
 /tmp/
+
+# scores file
+scores.*
