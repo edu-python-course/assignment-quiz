@@ -1,5 +1,7 @@
 # Assignment: Quiz Script
 
+[![Crowdin](https://badges.crowdin.net/assignment-quiz/localized.svg)](https://crowdin.com/project/assignment-quiz)
+
 This repository is compatible with [Replit](https://replit.com/).
 
 ## Materials within this repo
