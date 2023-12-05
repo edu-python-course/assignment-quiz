@@ -1,51 +1,42 @@
-# Instructions
+# Інструкції
 
-This project provides a simple command line script to ask the user questions
-from the file. The question file uses the pre-defined structure. After all
-answers are gathered, the total score is displayed to the user and the script
-execution is completed.
+Цей проєкт надає простий скрипт командного рядка, який задає користувачеві питання з файлу. Файл запитань використовує заздалегідь визначену структуру. Після того, як всі відповіді будуть зібрані, користувачеві буде показано загальну кількість балів і виконання скрипту буде завершено.
 
-![](assets/run_script.gif)
+![](../../.lesson/assets/run_script.gif)
 
-## Objective
+## Завдання
 
-Your task is to implement a script to run a command line based quiz.
-The users will enter their names and answer questions from the file
-one-by-one. At the end of the quiz the score should be displayed to
-the user, and a record should be created inside the _scores.txt_ file.
+Ваша задача - реалізувати скрипт для запуску вікторини на основі командного рядка.
+Користувачі будуть вводити свої імена та відповідати на питання з файлу. В кінці тесту користувачеві повинен бути показаний результат, а всередині файлу _scores.txt_ повинен бути створений запис.
 
-## Requirements
+## Вимоги
 
-### Gather username
+### Отримайте ім'я користувача
 
-This function prompts the user to input their name. The name should meet
-the requirements:
+Ця функція пропонує користувачеві ввести своє ім'я. Ім'я має відповідати вимогам:
 
-- non-empty string
-- no longer than 10 characters
+- непорожній рядок
+- не довше 10 символів
 
-In case the requirements are not met - ask again until the inputs passed
-the test.
+Якщо вимоги не виконані - запитуйте ще раз, поки введені дані не пройдуть перевірку.
 
-The function will return a name entered by the user.
+Функція поверне ім'я, введене користувачем.
 
-### Load questions from a CSV file
+### Завантажте питання з файлу CSV
 
-Questions are stored in a CSV file, that follows the pattern:
+Питання зберігаються у файлі CSV, який відповідає шаблону:
 
 ```text
 Question text?,"option 1,option 2,...,option n",correct answer
 ```
 
-This means, first column contains a questions;
-the second one stores all options available for answer;
-the last one stores the correct answer.
+Це означає, що в першому стовпчику міститься запитання, у другому - всі можливі варіанти відповідей, а в останньому - правильна відповідь.
 
-The correct answer comes in a form it was written in the options' column.
+Правильна відповідь подається у тому вигляді, в якому вона була написана у колонці з варіантами відповідей.
 
-Double quotes are used to store text with commas as a single column value.
+Подвійні лапки використовуються для зберігання тексту з комами як значення одного стовпця.
 
-The data structures aliases are defined as:
+Псевдоніми типів структур даних визначаються як:
 
 ```python
 from typing import List, TypedDict
@@ -58,18 +49,18 @@ Question = TypedDict("Question", {
 Questions = List[Question]
 ```
 
-The output structure for the question is a Python dictionary with keys:
+Вихідною структурою для питання є словник з ключами:
 
 - question
 - options
 - answer
 
-The function should return a list of question dictionaries.
+Функція повинна повертати список словників запитань.
 
-### Display questions
+### Показати питання
 
-This function simply prints out the question data to the user.
-The question text always has an empty line before and after it.
+Ця функція просто виводить дані питання користувачеві.
+Текст питання завжди має порожній рядок до і після нього.
 
 ```text
 
@@ -77,8 +68,7 @@ Is this a question?
 
 ```
 
-And each option should be printed out on a separate line with an option number
-prepending it. The option numbering starts from 1.
+Кожен варіант повинен бути видрукований на окремому рядку з номером варіанту, що стоїть перед ним. Нумерація варіантів починається з 1.
 
 ```text
 1   option 1
@@ -86,10 +76,9 @@ prepending it. The option numbering starts from 1.
 3   option 3
 ```
 
-The option number and the option text are to separated using whitespace symbols
-of any type; at least one separator symbol required.
+Номер варіанта відповіді та текст слід відокремлювати за допомогою будь-яких пробільних символів; принаймні один символ-розділювач обов'язковий.
 
-All together, the question structure:
+Все разом - питання:
 
 ```python
 question = {
@@ -99,7 +88,7 @@ question = {
 }
 ```
 
-will be printed out like:
+буде видрукувано так:
 
 ```text
 
@@ -109,13 +98,12 @@ Is this a question?
 2   No
 ```
 
-### Gathering answers from the user
+### Збір відповідей від користувача
 
-The users will be prompted to enter their answer after the question is printed
-out. The prompt should container text `"Submit answer: "`.
+Користувачам буде запропоновано ввести відповідь після того, як питання буде видрукувано. Підказка повинна містити текст `"Submit answer: "`.
 
-The function should return **the actual index** of the selected option.
-E.g. for the options `["A", "B", "C", "D"]` printed as:
+Функція повинна повертати **фактичний індекс** вибраного варіанта.
+Наприклад, для варіантів `["A", "B", "C", "D"]` виведених як:
 
 ```text
 1   D
@@ -124,36 +112,35 @@ E.g. for the options `["A", "B", "C", "D"]` printed as:
 4   A
 ```
 
-If the user choice is `4` (option `"A"`), the function should return `0`,
-as the actual index of `"A"` in the options list.
+Якщо користувач вибрав `4` (опція `"A"`), функція повинна повернути `0`, як
+фактичний індекс `"A"` у списку опцій.
 
-### Test if the answer is correct
+### Перевірте правильність відповіді
 
-The function gets question dictionary and the user answer as its arguments.
-It returns `True` in case the answer is correct, otherwise `False`.
+Функція отримує як аргументи словник запитання та відповідь користувача.
+Вона повертає `True`, якщо відповідь правильна, інакше `False`.
 
-### Perform quiz
+### Виконуємо тест
 
-This function gets a list of questions as its argument.
-It displays questions one by one, and tests the user answers for correctness.
+Ця функція отримує список запитань як аргумент.
+Вона показує питання одне за одним і перевіряє правильність відповідей користувача.
 
-The return value is the quiz's score - the number of correct answers.
+Значенням, що повертається, є оцінка тесту - кількість правильних відповідей.
 
-### Write score to a file storage
+### Запис рахунку до файлу
 
-The function gets username and quiz score as its arguments, and writes them
-to the file named **scores.txt**.
+Функція отримує як аргументи ім'я користувача та результат тесту і записує їх у файл з назвою **scores.txt**.
 
-The scores file structure is defined as:
+Структура файлу визначається наступним чином:
 
 ```text
 username    score points
 ```
 
-There are two columns, separated by two white space character.
-The first column width is fixed to 10 character.
+Є два стовпчики, розділені двома пробілами.
+Ширина першого стовпчика фіксована і дорівнює 10 символам.
 
-So, the content of scores file may look like:
+Отже, вміст файлу може мати такий вигляд:
 
 ```text
 username_1  10
@@ -164,13 +151,13 @@ bar         4
 foobar      15
 ```
 
-### Combine all functions together
+### Об'єднайте всі функції разом
 
-The `main` function (not the **main.py** module) is the quiz core.
-It combines all the functionality together and performs the quiz.
+Функція `main` (а не модуль **main.py**) є ядром тесту.
+Вона об'єднує всю функціональність разом і виконує вікторину.
 
-At the end the quiz results are to be writen to the **scores** file,
-and the user should get the message:
+Наприкінці результати тесту будуть записані у файл **scores**, а користувач
+отримає відповідне повідомлення:
 
 ```text
 
